@@ -4,7 +4,7 @@ function App() {
 
   return (
   <>
-  <h1 className="text-3xl text-center bg-orange-500 mt-4">hello</h1>
+  <h1 className="text-3xl text-center bg-orange-500 mt-96">hello</h1>
   </>
       
   )
