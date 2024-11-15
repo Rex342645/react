@@ -3,12 +3,11 @@ name: Deploy Vite React App
 on:
   push:
     branches:
-      - main  # Trigger the workflow when pushing to the main branch
+      - main 
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # Run this job on the latest Ubuntu
-
+    runs-on: ubuntu-latest  
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -16,21 +15,21 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '16'  
 
     - name: Install dependencies for 05passwordgenerator
       run: |
-        cd react/05passwordgenerator  # Navigate to the correct project folder
-        npm install  # Install dependencies
+        cd react/05passwordgenerator  # Navigate to the 05passwordgenerator folder
+        npm install  # Install dependencies for the project
 
     - name: Build the project
       run: |
-        cd react/05passwordgenerator  # Navigate again to the project folder
-        npm run build  # Run the build script for the React project
+        cd react/05passwordgenerator  # Navigate to the 05passwordgenerator folder
+        npm run build  # Run the build command to create the production build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./react/05passwordgenerator/dist  # Correct path to the dist folder
-        cname: rex342645.github.io
+        publish_dir: ./react/05passwordgenerator/dist  
+        cname: rex342645.github.io  
