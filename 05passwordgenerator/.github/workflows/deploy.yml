@@ -32,4 +32,6 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./react/05passwordgenerator/dist  
+        publish_dir: ./react/05passwordgenerator/dist  # Correct the path to the dist folder after the build
+        # Add a custom base URL for deployment on GitHub Pages
+        cname: rex342645.github.io
