@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # GitHub will run this job on the latest Ubuntu
+    runs-on: ubuntu-latest  # Run this job on the latest Ubuntu
 
     steps:
     - name: Checkout code
@@ -16,7 +16,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Specify the Node.js version you are using
+        node-version: '16'
 
     - name: Install dependencies for 05passwordgenerator
       run: |
@@ -25,13 +25,12 @@ jobs:
 
     - name: Build the project
       run: |
-        cd react/05passwordgenerator  # Navigate to the correct project folder
-        npm run build  # Run the build script (this should build using the src folder)
+        cd react/05passwordgenerator  # Navigate again to the project folder
+        npm run build  # Run the build script for the React project
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./react/05passwordgenerator/dist  # Correct the path to the dist folder after the build
-        # Add a custom base URL for deployment on GitHub Pages
+        publish_dir: ./react/05passwordgenerator/dist  # Correct path to the dist folder
         cname: rex342645.github.io
