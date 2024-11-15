@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  
-
+      
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest  
@@ -18,14 +18,18 @@ jobs:
       with:
         node-version: '16'  
 
-    - name: Install dependencies
-      run: npm install
+    - name: Install dependencies for 05passwordgenerator
+      run: |
+        cd react/05passwordgenerator  # Navigate into your specific project directory
+        npm install  # Install the dependencies for this project
 
     - name: Build the project
-      run: npm run build
+      run: |
+        cd react/05passwordgenerator  # Navigate again to the correct folder
+        npm run build  # Run the build script for this specific project
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
+        publish_dir: ./react/05passwordgenerator/dist  
