@@ -1,11 +1,12 @@
 import React from "react"
+import useCurrencyInfo from "./hooks/customhook"
 function App() {
   
 
   return (
-  <>
-  <h1 className="text-3xl text-center bg-orange-500 mt-96">hello</h1>
-  </>
+  <div>
+
+  </div>
       
   )
 }
