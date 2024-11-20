@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import useCurrencyInfo from "./hooks/customhook";
+import { useState } from "react";
+import { InputBox } from "./components";
+import useCurrencyInfo from "./hooks/useCurrencyInfo";
+
 function App() {
   const [amount, setAmount] = useState(0);
   const [from, setFrom] = useState("usd");
@@ -7,7 +9,9 @@ function App() {
   const [convertedAmount, setConvertedAmount] = useState(0);
 
   const currencyInfo = useCurrencyInfo(from);
+
   const options = Object.keys(currencyInfo);
+
   const swap = () => {
     setFrom(to);
     setTo(from);
@@ -23,8 +27,7 @@ function App() {
     <div
       className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
       style={{
-        backgroundImage:
-          "https://images.pexels.com/photos/7412089/pexels-photo-7412089.jpeg?auto=compress&cs=tinysrgb&w=600",
+        backgroundImage: `url('https://images.pexels.com/photos/7567561/pexels-photo-7567561.jpeg?auto=compress&cs=tinysrgb&w=600')`,
       }}
     >
       <div className="w-full">
@@ -40,10 +43,9 @@ function App() {
                 label="From"
                 amount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => {
-                setAmount(amount);
-                selectCurrency = { from };
-                }}
+                onCurrencyChange={(currency) => setAmount(amount)}
+                selectCurrency={from}
+                onAmountChange={(amount) => setAmount(amount)}
               />
             </div>
             <div className="relative w-full h-0.5">
@@ -56,14 +58,13 @@ function App() {
               </button>
             </div>
             <div className="w-full mt-1 mb-4">
-              <InputBox label="To" 
-              amount={convertedAmount}
-              currencyOptions={options}
-              onCurrencyChange={(currency) => {
-              setTo(currency);
-              selectCurrency = { to };
-              amountDisabled
-              }}
+              <InputBox
+                label="To"
+                amount={convertedAmount}
+                currencyOptions={options}
+                onCurrencyChange={(currency) => setTo(currency)}
+                selectCurrency={to}
+                amountDisable
               />
             </div>
             <button
