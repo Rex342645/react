@@ -5,7 +5,7 @@ import './App.css'
 function App() {
   return (
     <UserContextProvider className='flex'>
-      <h1>React Context Api</h1>
+      <h1> React Context Api </h1>
       <LogIn/>
      <Profile/>
     </UserContextProvider>
